@@ -14,7 +14,7 @@
 
 var SHEET_ID = '1JnVxHayy9UFelRGfX8EYtN1wyuf0hjftDyaXAwUcAM4';
 var SHEET_NAME = 'Registrations';
-var HEADERS = ['Timestamp', 'Name', 'WhatsApp', 'Category', 'Piece / Song', 'Consent'];
+var HEADERS = ['Timestamp', 'Name', 'WhatsApp', 'Category', 'Piece / Song', 'Portfolio', 'Consent'];
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -29,6 +29,7 @@ function doPost(e) {
       "'" + String(p.phone || ''),   // leading quote keeps the leading digit/format intact
       p.category || '',
       p.title || '',
+      p.portfolio || '',
       p.consent ? 'Yes' : 'No'
     ]);
 
