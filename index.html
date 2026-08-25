@@ -126,6 +126,24 @@ h1,h2,h3,.display{font-family:Anton,Impact,"Arial Black",sans-serif;font-weight:
 @keyframes twinkle{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:.95;transform:scale(1.3)}}
 
 /* ---------- marquee ---------- */
+/* ---------- hero map ---------- */
+.heromap{position:relative;display:block;margin-top:16px;border-radius:18px;overflow:hidden;
+  background:#e9e5df;text-decoration:none;border:1.5px solid rgba(0,0,0,.08);
+  box-shadow:0 14px 30px rgba(0,0,0,.14);transition:transform .18s ease,box-shadow .18s ease}
+.heromap:hover{transform:translateY(-3px);box-shadow:0 22px 40px rgba(0,0,0,.22)}
+.heromap:focus-visible{outline:3px solid var(--crimson);outline-offset:3px}
+.heromap iframe{display:block;width:100%;height:190px;border:0;pointer-events:none;
+  filter:saturate(.92) contrast(1.02)}
+.heromap-bar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:12px;
+  flex-wrap:nowrap;
+  padding:13px 15px;color:#fff;
+  background:linear-gradient(to top,rgba(10,6,16,.95),rgba(10,6,16,.72) 65%,transparent)}
+.heromap-text{display:flex;flex-direction:column;line-height:1.3;min-width:0;flex:1 1 auto}
+.heromap-text strong{font-family:Anton,sans-serif;font-weight:400;font-size:16px;
+  letter-spacing:.6px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.heromap-text em{font-style:normal;font-size:12px;color:#cfc8c2;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
 .marquee{background:var(--ink);color:#fff;overflow:hidden;padding:14px 0;
   font-family:Anton,sans-serif;font-size:20px;letter-spacing:3px;text-transform:uppercase;
   position:relative;z-index:1;transform:rotate(-1.2deg);margin:8px 0 34px;
@@ -333,6 +351,11 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
   .tagline{font-size:20px}
   .hero p.lede{font-size:15.5px;margin-top:16px}
   .mic{min-height:300px;border-radius:18px}
+  .heromap iframe{height:150px}
+  .heromap-bar{padding:11px 12px;gap:10px}
+  .heromap-text strong{font-size:14px}
+  .heromap-text em{font-size:11px}
+  .heromap .mapgo{padding:9px 12px;font-size:11px}
   .mic .rings{width:210px;height:210px}
   .mic .badge{left:12px;bottom:12px;padding:10px 13px}
   .mic .badge strong{font-size:15px}
@@ -358,7 +381,7 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
   .pin{width:36px;height:36px}
   .pin svg{width:19px;height:19px}
   .maptext strong{font-size:15px}
-  .mapgo{margin-left:0;width:100%;text-align:center;padding:13px 16px}
+  .mapoverlay .mapgo{margin-left:0;width:100%;text-align:center;padding:13px 16px}
   .card{padding:20px}
   .card .value{font-size:20px}
   .role{padding:24px 18px}
@@ -447,6 +470,25 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
           <span>Tapovan &middot; 6 PM onwards</span>
         </div>
       </div>
+
+      <a class="heromap" href="https://www.google.com/maps/dir/?api=1&amp;destination=Universal%20Sounds%20Recording%20Studios%2C%20Tapovan%2C%20Nashik&amp;travelmode=driving" target="_blank" rel="noopener"
+         aria-label="Get driving directions from your location to Universal Sounds Recording Studios">
+        <iframe src="https://www.google.com/maps?q=Universal+Sounds+Recording+Studios,+Tapovan,+Nashik&z=15&output=embed" title="Map showing Universal Sounds Recording Studios, Tapovan"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
+        <span class="heromap-bar">
+          <span class="pin">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/>
+              <circle cx="12" cy="10" r="2.6"/>
+            </svg>
+          </span>
+          <span class="heromap-text">
+            <strong>Tapovan Road, Nashik</strong>
+            <em>Tap for directions from where you are</em>
+          </span>
+          <span class="mapgo">Directions &rarr;</span>
+        </span>
+      </a>
     </div>
   </section>
 
@@ -476,11 +518,11 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
     <h2 class="section-title">The <span class="accent">Details</span></h2>
     <p class="section-sub">Everything you need before you sign up.</p>
     <div class="cards">
-      <a class="card tilt" href="https://www.google.com/maps/search/?api=1&amp;query=Universal%20Sounds%20Recording%20Studios%2C%20Tapovan%2C%20Nashik" target="_blank" rel="noopener">
+      <a class="card tilt" href="https://www.google.com/maps/dir/?api=1&amp;destination=Universal%20Sounds%20Recording%20Studios%2C%20Tapovan%2C%20Nashik&amp;travelmode=driving" target="_blank" rel="noopener">
         <div class="label">Venue</div>
         <div class="value">Universal Sounds Recording Studios</div>
         <div class="val">Tapovan &middot; Near Muktai Hospital</div>
-        <div class="maplink">Open in Google Maps &rarr;</div>
+        <div class="maplink">Get Directions &rarr;</div>
       </a>
       <div class="card tilt">
         <div class="label">Timing</div>
@@ -499,7 +541,7 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
       </div>
     </div>
 
-    <a class="mapwrap" href="https://www.google.com/maps/search/?api=1&amp;query=Universal%20Sounds%20Recording%20Studios%2C%20Tapovan%2C%20Nashik" target="_blank" rel="noopener"
+    <a class="mapwrap" href="https://www.google.com/maps/dir/?api=1&amp;destination=Universal%20Sounds%20Recording%20Studios%2C%20Tapovan%2C%20Nashik&amp;travelmode=driving" target="_blank" rel="noopener"
        aria-label="Open the venue location in Google Maps">
       <iframe src="https://www.google.com/maps?q=Universal+Sounds+Recording+Studios,+Tapovan,+Nashik&z=15&output=embed" title="Map showing Universal Sounds Recording Studios, Tapovan"
               loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
@@ -628,7 +670,7 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
 
 <footer>
   <div class="wrap">
-    Poet&rsquo;s House &middot; Open Mic Night &middot; <a href="https://www.google.com/maps/search/?api=1&amp;query=Universal%20Sounds%20Recording%20Studios%2C%20Tapovan%2C%20Nashik" target="_blank" rel="noopener">Universal Sounds Recording Studios, Tapovan</a><br>
+    Poet&rsquo;s House &middot; Open Mic Night &middot; <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Universal%20Sounds%20Recording%20Studios%2C%20Tapovan%2C%20Nashik&amp;travelmode=driving" target="_blank" rel="noopener">Universal Sounds Recording Studios, Tapovan Road, Nashik</a><br>
     Questions? <a href="mailto:thattrendingsong@gmail.com">thattrendingsong@gmail.com</a>
   </div>
 </footer>
