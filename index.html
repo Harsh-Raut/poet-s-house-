@@ -22,9 +22,11 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);overflow-x:hidden;
+  -webkit-tap-highlight-color:rgba(232,32,78,.15);text-size-adjust:100%;-webkit-text-size-adjust:100%;
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   -webkit-font-smoothing:antialiased;line-height:1.6}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+.wrap{max-width:1080px;margin:0 auto;position:relative;z-index:1;
+  padding:0 max(20px,env(safe-area-inset-left)) 0 max(20px,env(safe-area-inset-right))}
 h1,h2,h3,.display{font-family:Anton,Impact,"Arial Black",sans-serif;font-weight:400;
   letter-spacing:.5px;text-transform:uppercase;line-height:.95;margin:0}
 
@@ -188,7 +190,7 @@ section{padding:64px 0;scroll-margin-top:76px}
 .field.full{grid-column:1 / -1}
 label{font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
 label .req{color:var(--crimson)}
-input,select{font:inherit;font-size:15px;padding:14px;border:1.5px solid var(--line);
+input,select{font:inherit;font-size:16px;padding:14px;border:1.5px solid var(--line);
   border-radius:11px;background:var(--paper);color:var(--ink);width:100%;
   transition:border-color .15s ease,box-shadow .15s ease}
 input:focus,select:focus{outline:none;border-color:var(--crimson);background:#fff;
@@ -197,7 +199,7 @@ input:focus,select:focus{outline:none;border-color:var(--crimson);background:#ff
 .check{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#333}
 .check>span{text-transform:none;letter-spacing:0;font-weight:400;font-size:14.5px;line-height:1.5}
 .check .req{font-weight:800}
-.check input{width:18px;height:18px;flex:0 0 auto;margin-top:2px}
+.check input{width:22px;height:22px;flex:0 0 auto;margin-top:2px}
 .form .btn{grid-column:1 / -1;justify-self:start;font-size:15px;padding:17px 44px}
 .error{color:var(--crimson);font-size:12px;font-weight:600;display:none}
 .field.invalid input,.field.invalid select{border-color:var(--crimson)}
@@ -241,13 +243,90 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 
-@media (max-width:860px){
-  .hero{grid-template-columns:1fr;padding:32px 20px 44px}
-  .mic{min-height:320px;order:-1}
+/* ---------- sticky mobile CTA ---------- */
+.mobile-cta{display:none;position:fixed;left:12px;right:12px;z-index:40;
+  bottom:calc(12px + env(safe-area-inset-bottom));
+  text-align:center;text-decoration:none;color:#fff;
+  font-weight:800;letter-spacing:1.5px;text-transform:uppercase;font-size:14px;
+  padding:17px 20px;border-radius:999px;
+  background:linear-gradient(135deg,var(--crimson),#ff5a2b);
+  box-shadow:0 6px 0 #a3122f,0 14px 30px rgba(0,0,0,.3);
+  transform:translateY(140%);transition:transform .3s ease}
+.mobile-cta.show{transform:translateY(0)}
+
+@media (max-width:960px){
+  .hero{grid-template-columns:1fr;gap:28px;padding:28px 20px 40px}
   .roles{grid-template-columns:1fr}
   .form{grid-template-columns:1fr;padding:24px}
-  section{padding:48px 0}
-  .blob{filter:blur(50px)}
+  section{padding:52px 0}
+}
+
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .topbar{padding:12px 16px}
+  .brand{font-size:17px;letter-spacing:1.5px}
+  .brand svg{width:22px;height:22px}
+  .topbar .btn{padding:12px 18px;font-size:11px;letter-spacing:1px}
+
+  .hero{padding:20px 16px 34px;gap:22px}
+  .hero h1{font-size:clamp(46px,15vw,68px);margin-top:14px}
+  .kicker{font-size:10.5px;letter-spacing:1.6px;padding:7px 12px}
+  .tagline{font-size:20px}
+  .hero p.lede{font-size:15.5px;margin-top:16px}
+  .mic{min-height:270px;border-radius:18px}
+  .mic .art{width:48%}
+  .mic .rings{width:210px;height:210px}
+
+  /* full-width, thumb-friendly buttons */
+  .cta-row{gap:12px;margin-top:24px}
+  .cta-row .btn{width:100%;text-align:center;padding:16px 20px}
+  .form .btn{width:100%;text-align:center;justify-self:stretch}
+
+  .marquee{font-size:15px;letter-spacing:2px;padding:11px 0;margin:4px 0 26px}
+  .marquee div{gap:22px}
+
+  section{padding:44px 0;scroll-margin-top:64px}
+  .section-title{font-size:31px}
+  .section-sub{font-size:15px}
+  .cards{gap:14px;margin-top:24px}
+  .card{padding:20px}
+  .card .value{font-size:20px}
+  .role{padding:24px 18px}
+
+  .howlist{gap:18px;margin-top:26px}
+  .howlist li{padding-left:50px}
+  .howlist li::before{width:36px;height:36px;font-size:16px}
+  .rules li{padding:11px 0 11px 26px;font-size:15px}
+
+  .form{padding:20px 18px;gap:16px;border-radius:16px}
+  .form-3d{perspective:none;margin-top:26px}
+  .field{gap:6px}
+  .success{padding:8px 0 4px}
+  .tick{width:66px;height:66px;margin-bottom:16px}
+  .tick svg{width:34px;height:34px}
+  .success h3{font-size:29px}
+  .success .who{font-size:16px}
+  .success p{font-size:15px}
+  .success .recap span{padding:7px 13px;font-size:12.5px}
+
+  .mobile-cta{display:block}
+  footer{padding:26px 0 92px;font-size:13px}   /* clear the sticky bar */
+
+  /* lighter background work — blurs are expensive on phones */
+  .blob{filter:blur(55px);opacity:.20}
+  .blob.b3{display:none}
+  .note{font-size:22px!important}
+}
+
+@media (max-width:360px){
+  .hero h1{font-size:42px}
+  .section-title{font-size:27px}
+  .marquee{font-size:13px}
+}
+
+@media (hover:none){
+  .btn:hover,.btn-ghost:hover{transform:none}
+  .card:hover,.role:hover{box-shadow:0 10px 22px rgba(0,0,0,.06)}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -457,6 +536,8 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
   </section>
 </main>
 
+<a class="mobile-cta" href="#register" id="mobileCta">Register Now &rarr;</a>
+
 <footer>
   <div class="wrap">
     Poet&rsquo;s House &middot; Open Mic Night &middot; Universal Sounds Recording Studios, Tapovan<br>
@@ -497,6 +578,19 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
     tilt(document.getElementById('micCard'), 14, -4);
     Array.prototype.forEach.call(document.querySelectorAll('.tilt'), function (c) { tilt(c, 10, -6); });
   }
+
+  /* sticky mobile CTA — appears after the hero, hides over the form */
+  var cta = document.getElementById('mobileCta');
+  var hero = document.querySelector('.hero');
+  var reg = document.getElementById('register');
+  function toggleCta() {
+    var pastHero = hero.getBoundingClientRect().bottom < 40;
+    var atForm = reg.getBoundingClientRect().top < window.innerHeight * 0.9;
+    cta.classList.toggle('show', pastHero && !atForm);
+  }
+  window.addEventListener('scroll', toggleCta, { passive: true });
+  window.addEventListener('resize', toggleCta);
+  toggleCta();
 
   /* reveal on scroll */
   var io = new IntersectionObserver(function (entries) {
