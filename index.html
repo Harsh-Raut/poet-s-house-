@@ -285,6 +285,18 @@ input:focus,select:focus{outline:none;border-color:var(--crimson);background:#ff
 .success .recap{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px}
 .success .recap span{background:var(--paper);border:1.5px solid var(--line);
   border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600}
+.cal{margin-top:24px;padding-top:20px;border-top:1px dashed var(--line)}
+.cal-when{display:block;font-family:Anton,sans-serif;font-size:15px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+.cal-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.calbtn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  font:inherit;font-size:13px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;background:var(--paper);
+  border:1.5px solid var(--line);border-radius:999px;padding:11px 18px;
+  transition:border-color .15s ease,transform .15s ease}
+.calbtn:hover{border-color:var(--crimson);transform:translateY(-2px)}
+.calbtn svg{width:16px;height:16px;flex:0 0 auto;color:var(--crimson)}
+
 .success .again{display:inline-block;margin-top:22px;font-size:13px;font-weight:800;
   letter-spacing:1.5px;text-transform:uppercase;color:var(--crimson);
   background:none;border:0;cursor:pointer;border-bottom:2px solid var(--crimson);padding:0 0 3px}
@@ -378,6 +390,8 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
   .success .who{font-size:16px}
   .success p{font-size:15px}
   .success .recap span{padding:7px 13px;font-size:12.5px}
+  .cal-btns{flex-direction:column}
+  .calbtn{justify-content:center;width:100%;padding:13px 18px}
 
   .mobile-cta{display:block}
   footer{padding:26px 0 92px;font-size:13px}   /* clear the sticky bar */
@@ -424,7 +438,7 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
 <main>
   <section class="hero">
     <div>
-      <span class="kicker"><span class="dot"></span> Free Entry &middot; 6 PM Onwards</span>
+      <span class="kicker"><span class="dot"></span> Sat, 5 Sept &middot; Free Entry</span>
       <h1>Open <span class="red">Mic</span> Night</h1>
       <p class="tagline">Your voice. Your stage. <u>Your night.</u></p>
       <p class="lede">An evening built for anyone with something to say. Sing it, read it, or
@@ -444,7 +458,7 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
         <div class="sparkles" id="sparkles" aria-hidden="true"></div>
         <div class="badge">
           <strong>Universal Sounds Studios</strong>
-          <span>Tapovan &middot; 6 PM onwards</span>
+          <span>Sat, 5 Sept &middot; 6 PM</span>
         </div>
       </div>
 
@@ -484,9 +498,9 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
         <div class="maplink">Get Directions &rarr;</div>
       </a>
       <div class="card tilt">
-        <div class="label">Timing</div>
-        <div class="value">6:00 PM Onwards</div>
-        <div class="val">Drop in any time after six &mdash; the evening runs on.</div>
+        <div class="label">When</div>
+        <div class="value">Sat, 5 Sept &middot; 6 PM</div>
+        <div class="val">Please reach by 6:00 PM &mdash; the evening runs on from there.</div>
       </div>
       <div class="card tilt">
         <div class="label">Format</div>
@@ -536,7 +550,7 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
     <ol class="howlist">
       <li><strong>Register online</strong><span>Under a minute. Three required fields.</span></li>
       <li><strong>Get a confirmation</strong><span>We WhatsApp you the venue details and directions.</span></li>
-      <li><strong>Reach by 6 PM</strong><span>Come in, grab a seat, settle your nerves.</span></li>
+      <li><strong>Reach by 6 PM</strong><span>Saturday, 5 September. Come in and settle your nerves.</span></li>
       <li><strong>Take the mic</strong><span>Go up when you&rsquo;re ready &mdash; sound engineer on deck.</span></li>
     </ol>
   </section>
@@ -615,8 +629,26 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
             <h3>You&rsquo;re <span class="accent">In!</span></h3>
             <div class="who" id="successWho"></div>
             <p>Your registration is confirmed. Venue details and directions will reach you on
-               WhatsApp before the show &mdash; just turn up after 6 PM and take the mic.</p>
+               WhatsApp before the show &mdash; be there by 6 PM on Saturday and take the mic.</p>
             <div class="recap" id="successRecap"></div>
+
+            <div class="cal">
+              <span class="cal-when">Saturday, 5 September &middot; 6:00 PM</span>
+              <span class="cal-btns">
+                <a class="calbtn" id="calGoogle" href="#" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/>
+                    <path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                  Google Calendar
+                </a>
+                <button type="button" class="calbtn" id="calIcs">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="round"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg>
+                  Apple / Outlook
+                </button>
+              </span>
+            </div>
+
             <button type="button" class="again" id="again">Register someone else</button>
           </div>
         </form>
@@ -729,6 +761,57 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
     }
   }
 
+  /* ---------- add to calendar ---------- */
+  var EVENT = {
+    title: 'Open Mic Night \u2014 Poet\u2019s House',
+    // 5 Sep 2026, 6:00 PM \u2013 10:00 PM IST, expressed in UTC
+    startUTC: '20260905T123000Z',
+    endUTC: '20260905T163000Z',
+    location: 'Universal Sounds Recording Studios, Tapovan Road, Nashik',
+    details: 'Open Mic Night at Poet\u2019s House. Please reach the venue by 6:00 PM. ' +
+             'Open floor \u2014 singers, poets, writers and storytellers. Free entry.'
+  };
+
+  function googleCalUrl() {
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+      '&text=' + encodeURIComponent(EVENT.title) +
+      '&dates=' + EVENT.startUTC + '/' + EVENT.endUTC +
+      '&location=' + encodeURIComponent(EVENT.location) +
+      '&details=' + encodeURIComponent(EVENT.details);
+  }
+
+  function icsBlob() {
+    var lines = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Poet\u2019s House//Open Mic//EN',
+      'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:openmic-20260905@poetshouse',
+      'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
+      'DTSTART:' + EVENT.startUTC,
+      'DTEND:' + EVENT.endUTC,
+      'SUMMARY:' + EVENT.title,
+      'LOCATION:' + EVENT.location.replace(/,/g, '\\,'),
+      'DESCRIPTION:' + EVENT.details.replace(/,/g, '\\,'),
+      'BEGIN:VALARM', 'TRIGGER:-PT2H', 'ACTION:DISPLAY',
+      'DESCRIPTION:Open Mic Night tonight \u2014 reach by 6 PM', 'END:VALARM',
+      'END:VEVENT', 'END:VCALENDAR'
+    ];
+    return new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+  }
+
+  document.getElementById('calGoogle').href = googleCalUrl();
+
+  document.getElementById('calIcs').addEventListener('click', function () {
+    var url = URL.createObjectURL(icsBlob());
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'open-mic-night-5-sep.ics';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  });
+
   function done(btn, data) {
     document.getElementById('successWho').textContent =
       data.name.trim().split(/\s+/)[0] + ', see you on the ' +
@@ -736,7 +819,7 @@ footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--crimson)}
 
     var recap = document.getElementById('successRecap');
     recap.innerHTML = '';
-    [data.category, data.title, '6 PM onwards'].forEach(function (t) {
+    [data.category, data.title, '5 Sept, 6 PM'].forEach(function (t) {
       if (!t) return;
       var chip = document.createElement('span');
       chip.textContent = t;
